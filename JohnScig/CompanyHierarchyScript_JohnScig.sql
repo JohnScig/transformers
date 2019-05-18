@@ -1,7 +1,3 @@
-CREATE DATABASE CompanyHierarchy
-GO
-USE CompanyHierarchy
-
 CREATE TABLE Employees (
     EmployeeID int PRIMARY KEY IDENTITY,
 	Title nvarchar (10) NOT NULL,

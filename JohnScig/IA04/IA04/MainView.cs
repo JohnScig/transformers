@@ -280,6 +280,7 @@ namespace IA04
 
         #region Handling Button Locking
 
+        // ??
         private void SetUpButtons()
         {
             _companyButtons = new List<Button>() { btn_company_edit, btn_company_remove, btn_company_setLead, btn_company_show, btn_division_add };
@@ -291,12 +292,15 @@ namespace IA04
 
         private void LockButtons()
         {
+            // bool namiesto int
             int companyCounter = dgv_companies.Rows.Count;
             int divisionCounter = dgv_divisions.Rows.Count;
             int projectCounter = dgv_projects.Rows.Count;
             int departmentCounter = dgv_departments.Rows.Count;
             int employeeCounter = dgv_employees.Rows.Count;
 
+
+            // Tieto veci by nemali byť lokálne.
             List<Button> companyButtons = new List<Button>() { btn_company_edit, btn_company_remove, btn_company_setLead, btn_company_show, btn_division_add };
             List<Button> divisionButtons = new List<Button>() { btn_division_edit, btn_division_remove, btn_division_setLead, btn_division_show, btn_project_add };
             List<Button> projectButtons = new List<Button>() { btn_project_edit, btn_project_remove, btn_project_setLead, btn_project_show, btn_department_add };

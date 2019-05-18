@@ -14,6 +14,8 @@ namespace IA04
         [STAThread]
         static void Main()
         {
+            // Prečo nemôžem riaditeľa nastaviť pri pridávaní/editácii firmy?
+            // Pri nastavení riaditeľa mi to padlo.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainView());

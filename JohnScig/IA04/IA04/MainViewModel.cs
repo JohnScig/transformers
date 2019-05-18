@@ -78,6 +78,7 @@ namespace IA04
                 RemoveNode(item.NodeID);
             }
 
+            // Zamestnanci sa dajú vymazať jedným SQL príkazom a nie v cykle.
             foreach (var item in _functions.GetEmployeesByNode(nodeID))
             {
                 _functions.RemoveEmployee(item.EmployeeID);

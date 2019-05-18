@@ -19,6 +19,7 @@ namespace DatabaseCommunication.Repositories
         {
             using (SqlConnection connection = new SqlConnection(connString))
             {
+                // Duplikácia kódu.
                 try
                 {
                     connection.Open();
@@ -248,6 +249,7 @@ namespace DatabaseCommunication.Repositories
                         {
                             while (reader.Read())
                             {
+                                //
                                 employee.EmployeeID = reader.GetInt32(0);
                                 employee.Title = reader.GetString(1);
                                 employee.LastName = reader.GetString(2);
@@ -300,7 +302,7 @@ namespace DatabaseCommunication.Repositories
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            
+
                             while (reader.Read())
                             {
                                 EmployeeModel employee = new EmployeeModel();

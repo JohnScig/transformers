@@ -42,6 +42,7 @@ namespace IA04
             LockButtons(dgv_unassigned.Rows.Count);
         }
 
+        // Parameter by mal byť bool.
         private void LockButtons(int count)
         {
             btn_Edit.Enabled = (count != 0);
@@ -82,6 +83,7 @@ namespace IA04
 
         private void btn_remove_Click(object sender, EventArgs e)
         {
+            // SelectedCells nie je dobrá voľba na toto.
             _employeesViewModel.DeleteEmployee(Convert.ToInt32(dgv_unassigned.SelectedCells[0].Value));
             LoadGrid();
         }

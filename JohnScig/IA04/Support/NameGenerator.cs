@@ -12,15 +12,15 @@ namespace Support
         public static string[] GeneratePersonData()
         {
             string[] data = new string[5];
-            Random seed = new Random();
-            Random random = new Random(seed.Next());
+            Random seed = new Random(); // Toto isto nie je treba.
+            Random random = new Random(seed.Next()); // Trieda je statická, tak aj tieto veci by mali byť.
             PersonNameGenerator personNameGenerator = new PersonNameGenerator();
             if (random.Next(0,100) < 50)
             //female name
             {
                 data[0] = "Mrs.";
                 data[1] = personNameGenerator.GenerateRandomFemaleFirstName();
-                data[2] = personNameGenerator.GenerateRandomLastName();
+                data[2] = personNameGenerator.GenerateRandomLastName(); // Nemusí byť v if-e.
             }
             else
             // male name
