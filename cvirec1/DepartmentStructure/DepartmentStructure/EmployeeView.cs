@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseCommunication;
-using Support;
+//using Support; // Čo je toto? Nešlo mi to skompilovať kvôli tomu.
 namespace DepartmentStructure
 {
     public partial class EmployeeView : Form

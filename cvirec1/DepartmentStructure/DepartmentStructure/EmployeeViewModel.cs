@@ -34,8 +34,10 @@ namespace DepartmentStructure
             Employee = _departmentFunction.GetEmployeeByID(employeeID);
         }
 
+        // Metóda by výsledok mala priamo vrátiť a nie nastaviť lokálne.
         public void AddEmployee()
         {
+            // V takýchto prípadoch nie je StringBuilder potrebný.
             StringBuilder sb = new StringBuilder();
             sb.Append(NewEmployee.Name+".");
             sb.Append(NewEmployee.Surname);

@@ -18,12 +18,13 @@ namespace DepartmentStructure
         {
             InitializeComponent();
             _companyViewModel = new CompanyViewModel();
+            // Palec hore za DataSource.
             dgwCompany.DataSource = _companyViewModel.GetAllCompanies();
-            dgwCompany.DataMember = "Company";           
+            dgwCompany.DataMember = "Company";
             if (dgwCompany.RowCount > 0)
             {
                 _companyID = (int)dgwCompany.Rows[0].Cells[0].Value;
-                dgwCompany.DataMember = "Company";
+                dgwCompany.DataMember = "Company"; // Načo sa to znova nastavuje?
             }
             else
             {
@@ -52,23 +53,25 @@ namespace DepartmentStructure
             }
             else
             {
+                // V reťazci nie je potrebný $"". Je to kadetade takto.
                 MessageBox.Show("You must add new company.",
                             $"Please add new company.",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
             }
-            
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             using (DepartmentView departmentView = new DepartmentView(0))
             {
+                // ShowDialog() priamo vracia DialogResult.
                 departmentView.ShowDialog();
                 if (departmentView.DialogResult == DialogResult.OK)
                 {
                     dgwCompany.DataSource = _companyViewModel.GetAllCompanies();
-                    dgwCompany.DataMember = "Company";
+                    dgwCompany.DataMember = "Company"; // Nie je potrebné nastavovať zakaždým.
                 }
             }
         }

@@ -25,7 +25,7 @@ namespace DatabaseCommunication.Repositories
                     using (SqlCommand command = connection.CreateCommand())
                     {
                         command.CommandText = @"SELECT[CompanyLevelID],[LevelName]
-                                                FROM [DepartmentStructure].[dbo].[CompanyLevel]
+                                                FROM [dbo].[CompanyLevel]
                                                 where companylevelid !=1";
                         try
                         {
@@ -36,6 +36,7 @@ namespace DatabaseCommunication.Repositories
                                     DepartmentData.Add(reader.GetInt32(0), reader.GetString(1));
                                 }
                             }
+                            // Tento if je na čo?
                             if (command.ExecuteNonQuery() > 0)
                             {
                                 resposeType = DbEnum.DBResposeType.OK;

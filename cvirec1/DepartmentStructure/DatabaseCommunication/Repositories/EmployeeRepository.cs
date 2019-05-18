@@ -22,8 +22,10 @@ namespace DatabaseCommunication.Repositories
                 try
                 {
                     connection.Open();
+                    // + connection.CreateCommand()
                     using (SqlCommand command = connection.CreateCommand())
                     {
+                        // Nerobiť string takto cez viac riadkov. Spojíť dva normálne cez +.
                         command.CommandText = @"SELECT * FROM Employee
                                             WHERE EmployeeID = @EmployeeID";
 
@@ -34,6 +36,7 @@ namespace DatabaseCommunication.Repositories
                             {
                                 while (reader.Read())
                                 {
+                                    // Prístup pomocou indexov keď je SELECT * je nebezpečný.
                                     employee.EmployeeID = reader.GetInt32(0);
                                     employee.Title = reader.GetString(1);
                                     employee.Name = reader.GetString(2);
@@ -58,7 +61,7 @@ namespace DatabaseCommunication.Repositories
                     Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
                     Debug.WriteLine(e.ToString());
                     return employee;
-                }                
+                }
             }
             return employee;
         }
@@ -82,6 +85,7 @@ namespace DatabaseCommunication.Repositories
                                                 VALUES (@title,@name,@surname,@phone,@mail,@department);
 
                                                 SELECT @@IDENTITY";
+                        // + ??
                         command.Parameters.Add("@title", SqlDbType.NVarChar).Value = (object)newEmployee.Title ?? DBNull.Value;
                         command.Parameters.Add("@name", SqlDbType.NVarChar).Value = newEmployee.Name;
                         command.Parameters.Add("@surname", SqlDbType.NVarChar).Value = newEmployee.Surname;
@@ -91,6 +95,7 @@ namespace DatabaseCommunication.Repositories
 
                         try
                         {
+                            // Tento if je asi zbytočný.
                             if (command.ExecuteNonQuery() > 0)
                             {
                                 dBRespose = DbEnum.DBResposeType.OK;
@@ -98,7 +103,7 @@ namespace DatabaseCommunication.Repositories
                             else
                             {
                                 dBRespose = DbEnum.DBResposeType.NotOK;
-                            }                            
+                            }
                         }
 
                         catch (SqlException e)
@@ -114,13 +119,14 @@ namespace DatabaseCommunication.Repositories
                     Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
                     Debug.WriteLine(e.ToString());
                     dBRespose = DbEnum.DBResposeType.ConnectionError;
-                }                
+                }
             }
             return dBRespose;
         }
 
         public DataSet ViewAllEmployee(int companyID)
         {
+            // Nepotrebujem dataset, keď pracujem iba s jednou tabuľkou.
             DataSet ds = new DataSet();
             try
             {
@@ -136,7 +142,7 @@ namespace DatabaseCommunication.Repositories
                                         ,[Phone]
                                         ,[Mail]
                                         ,em.[DepartmentID]
-                                        FROM [DepartmentStructure].[dbo].[Employee] as em
+                                        FROM [dbo].[Employee] as em
 										join Department as d on em.departmentid = d.departmentid
                                         where IDcompany = @company;";
                         command.Parameters.Add("@company", SqlDbType.Int).Value = companyID;
@@ -232,7 +238,7 @@ namespace DatabaseCommunication.Repositories
                     using (SqlCommand command = connection.CreateCommand())
                     {
                         command.CommandText = @"Delete from Employee where EmployeeID = @employeeID;";
-                        command.Parameters.Add("@employeeID", SqlDbType.Int).Value =employeeID;                        
+                        command.Parameters.Add("@employeeID", SqlDbType.Int).Value =employeeID;
                         try
                         {
                             if (command.ExecuteNonQuery() > 0)
@@ -258,7 +264,7 @@ namespace DatabaseCommunication.Repositories
                     Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
                     Debug.WriteLine(e.ToString());
                     resposeType = DbEnum.DBResposeType.ConnectionError;
-                }      
+                }
             }
             return resposeType;
         }
@@ -275,7 +281,7 @@ namespace DatabaseCommunication.Repositories
                     using (SqlCommand command = connection.CreateCommand())
                     {
                         command.CommandText = @"SELECT [EmployeeID],[Name],[Surname]      
-                                                FROM [DepartmentStructure].[dbo].[Employee]";
+                                                FROM [dbo].[Employee]";
 
                         try
                         {

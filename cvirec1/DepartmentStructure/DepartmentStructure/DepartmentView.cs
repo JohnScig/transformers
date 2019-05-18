@@ -14,7 +14,7 @@ namespace DepartmentStructure
     public partial class DepartmentView : Form
     {
         private DepartmentViewModel _departmentViewModel;
-        private int _type;
+        private int _type; // Čo je toto za bulharská konštanta?
 
         public DepartmentView(int type)
         {
@@ -29,14 +29,15 @@ namespace DepartmentStructure
             cbxHeadDepartment.Visible = false;
             lblSupervisor.Visible = false;
         }
-        public DepartmentView(int type,int companyID)
+        public DepartmentView(int type, int companyID)
         {
             InitializeComponent();
             _departmentViewModel = new DepartmentViewModel();
             _departmentViewModel.CompanyID = companyID;
             _type = type;
-            if( type == 1)
+            if (type == 1)
             {
+                // Duplikácia kódu - tieto cykly.
                 foreach (var item in _departmentViewModel.CompanyLevelList)
                 {
                     cbxCompanyLevel.Items.Add($"{item.Key} - {item.Value}");
@@ -96,7 +97,7 @@ namespace DepartmentStructure
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(_type == 0)
+            if (_type == 0)
             {
                 if (ControlInput())
                 {
@@ -128,7 +129,8 @@ namespace DepartmentStructure
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                 }
-            }else if (_type == 1)
+            }
+            else if (_type == 1)
             {
                 if (ControlInput())
                 {
@@ -137,12 +139,12 @@ namespace DepartmentStructure
                     var ret1 = cbxCompanyLevel.SelectedItem.ToString().Split(' ');
                     _departmentViewModel.NewDepartment.CompanyLevelData.CompanyLevelID = int.Parse(ret1[0]);
                     var ret2 = cbxHeadDepartment.SelectedItem.ToString().Split(' ');
-                    _departmentViewModel.NewDepartment.HeadDepartment= int.Parse(ret2[0]);
+                    _departmentViewModel.NewDepartment.HeadDepartment = int.Parse(ret2[0]);
                     if (cbxSupervisor.Items.Count != 0)
                     {
                         var ret3 = cbxSupervisor.SelectedItem.ToString().Split(' ');
                         _departmentViewModel.NewDepartment.EmployeeData.EmployeeID = int.Parse(ret3[0]);
-                    }                    
+                    }
                     _departmentViewModel.NewDepartment.IdCompany = _departmentViewModel.CompanyID;
                     _departmentViewModel.AddDepartment();
                     if (_departmentViewModel.ActionResult.DBResultEnum == DbEnum.DBResposeType.OK)
@@ -199,7 +201,7 @@ namespace DepartmentStructure
 
         private bool ControlInput()
         {
-
+            // Naozaj chceš v podmienke &&?
             if (String.IsNullOrWhiteSpace(txbCode.Text) && String.IsNullOrWhiteSpace(txbDepartmentName.Text))
             {
                 return false;
@@ -208,7 +210,7 @@ namespace DepartmentStructure
             {
                 return true;
             }
-        }        
+        }
 
         private void txbHeadDepartment_TextChanged(object sender, EventArgs e)
         {
@@ -218,7 +220,7 @@ namespace DepartmentStructure
         private void cbxCompanyLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
             var ret1 = cbxCompanyLevel.SelectedItem.ToString().Split(' ');
-            _departmentViewModel.GetAllDepartments(int.Parse(ret1[0])-1);
+            _departmentViewModel.GetAllDepartments(int.Parse(ret1[0]) - 1);
             cbxHeadDepartment.Items.Clear();
             foreach (var item in _departmentViewModel.DepartmentList)
             {

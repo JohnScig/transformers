@@ -8,12 +8,13 @@ namespace DatabaseCommunication.Models
 {
     public class Employee
     {
+        // Nemalo by to byť nullable, keďže je to primárny kľúč.
         public int? EmployeeID { get; set; }
         public string Title { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone { get; set; }
         public string Mail { get; set; }
-        public int? DepartmentID { get; set; }        
+        public int? DepartmentID { get; set; }
     }
 }

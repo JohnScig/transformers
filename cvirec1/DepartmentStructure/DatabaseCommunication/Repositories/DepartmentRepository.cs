@@ -23,7 +23,7 @@ namespace DatabaseCommunication.Repositories
                     connection.Open();
                     using (SqlCommand command = connection.CreateCommand())
                     {
-                        command.CommandText = @"SELECT * FROM [DepartmentStructure].[dbo].[Department]
+                        command.CommandText = @"SELECT * FROM [dbo].[Department]
                                                 where DepartmentID = @departmentID";
 
                         command.Parameters.Add("@departmentID", SqlDbType.Int).Value = departmentID;
@@ -40,7 +40,7 @@ namespace DatabaseCommunication.Repositories
                                     department.CompanyLevelData.CompanyLevelID = reader.GetInt32(4);
                                     department.IdCompany = reader.GetInt32(5);
                                     department.EmployeeData.EmployeeID = reader.IsDBNull(6) ? (int?)null : reader.GetInt32(6);
-                                    
+
                                 }
                             }
                         }
@@ -56,7 +56,7 @@ namespace DatabaseCommunication.Repositories
                 catch (SqlException e)
                 {
                     Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
-                    Debug.WriteLine(e.ToString());                    
+                    Debug.WriteLine(e.ToString());
                 }
             }
             return department;
@@ -64,12 +64,13 @@ namespace DatabaseCommunication.Repositories
 
         public DataSet ViewAllCompany()
         {
+            // Databáza natvrdo v SELECT-e.
             string sqlQuery = @"  SELECT dep.[DepartmentID]		                        
                                 ,[DepartmentName]
                                 ,[DepartmentCode]	  
 	                            ,concat(emp.name,' '
 	                            ,emp.surname )as HeadOF
-	                            FROM [DepartmentStructure].[dbo].[Department] as dep
+	                            FROM [dbo].[Department] as dep
 	                            left join Employee as emp on dep.employeeID=emp.employeeID
                                 where companyLevelID = 1;";
             DataSet ds = new DataSet();
@@ -88,6 +89,7 @@ namespace DatabaseCommunication.Repositories
             }
             catch (Exception e)
             {
+                // Musel som si to odkrokovať aby som zistil, že mi to padá.
                 Debug.WriteLine(e.Message);
             }
 
@@ -101,7 +103,7 @@ namespace DatabaseCommunication.Repositories
                                 ,[DepartmentCode]	  
 	                            ,concat(emp.name,' '
 	                            ,emp.surname )as HeadOF
-	                            FROM [DepartmentStructure].[dbo].[Department] as dep
+	                            FROM [dbo].[Department] as dep
 	                            left join Employee as emp on dep.employeeID=emp.employeeID
                                 where dep.[DepartmentID] = @companyID;";
             DataSet ds = new DataSet();
@@ -134,7 +136,7 @@ namespace DatabaseCommunication.Repositories
                                 ,[DepartmentCode]	  
 	                            ,concat(emp.name,' '
 	                            ,emp.surname )as HeadOF
-	                            FROM [DepartmentStructure].[dbo].[Department] as dep
+	                            FROM [dbo].[Department] as dep
 	                            left join Employee as emp on dep.employeeID=emp.employeeID
                                 where companyLevelID = 2 and idcompany = @company;";
             DataSet ds = new DataSet();
@@ -167,7 +169,7 @@ namespace DatabaseCommunication.Repositories
                                 ,[DepartmentCode]	  
 	                            ,concat(emp.name,' '
 	                            ,emp.surname )as HeadOF
-	                            FROM [DepartmentStructure].[dbo].[Department] as dep
+	                            FROM [dbo].[Department] as dep
 	                            left join Employee as emp on dep.employeeID=emp.employeeID
                                 where companyLevelID = 3 and idcompany = @company;";
             DataSet ds = new DataSet();
@@ -200,7 +202,7 @@ namespace DatabaseCommunication.Repositories
                                 ,[DepartmentCode]	  
 	                            ,concat(emp.name,' '
 	                            ,emp.surname )as HeadOF
-	                            FROM [DepartmentStructure].[dbo].[Department] as dep
+	                            FROM [dbo].[Department] as dep
 	                            left join Employee as emp on dep.employeeID=emp.employeeID
                                 where companyLevelID = 4 and idcompany = @company;";
             DataSet ds = new DataSet();
@@ -249,6 +251,7 @@ namespace DatabaseCommunication.Repositories
                             int insertedid = (int)command.ExecuteScalar();
                             if (department.IdCompany == null)
                             {
+                                // Chýbajú transakcie.
                                 UpdateCompanyID(insertedid);
                             }
                             if (insertedid > 0)
@@ -291,7 +294,7 @@ namespace DatabaseCommunication.Repositories
                         command.CommandText = @"Update Department
                                                 set  IDCompany = @company
                                                 where DepartmentID = @departmentID;";
-                        
+
                         command.Parameters.Add("@company", SqlDbType.Int).Value = companyID;
                         command.Parameters.Add("@departmentID", SqlDbType.Int).Value = companyID;
 
@@ -311,7 +314,7 @@ namespace DatabaseCommunication.Repositories
                         {
                             Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
                             Debug.WriteLine(e.ToString());
-                            
+
                         }
                     }
                 }
@@ -389,7 +392,7 @@ namespace DatabaseCommunication.Repositories
                     using(SqlCommand command = connection.CreateCommand())
                 {
                         command.CommandText = @"SELECT [DepartmentID],[DepartmentName]      
-                                                FROM [DepartmentStructure].[dbo].[Department]
+                                                FROM [dbo].[Department]
                                                 where CompanyLevelID = @id and IDcompany = @company";
                         command.Parameters.Add("@id", SqlDbType.Int).Value = id;
                         command.Parameters.Add("@company", SqlDbType.Int).Value = companyID;
@@ -402,9 +405,9 @@ namespace DatabaseCommunication.Repositories
                                 {
                                     Department department= new Department();
                                     department.DepartmentID = reader.GetInt32(0);
-                                    department.DepartmentName = reader.GetString(1);                                    
+                                    department.DepartmentName = reader.GetString(1);
                                     departments.Add(department);
-                                }                                
+                                }
                             }
                         }
 
@@ -412,7 +415,7 @@ namespace DatabaseCommunication.Repositories
                         {
                             Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
                             Debug.WriteLine(e.ToString());
-                            
+
                         }
 
                     }
@@ -420,7 +423,7 @@ namespace DatabaseCommunication.Repositories
                 catch (SqlException e)
                 {
                     Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
-                    Debug.WriteLine(e.ToString());                    
+                    Debug.WriteLine(e.ToString());
                 }
             }
             return departments;
