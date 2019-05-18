@@ -1,0 +1,3 @@
+- Z pouívate¾ského poh¾adu je to v podstate nepouite¾né.
+  - Ak èoko¾vek pridám, nevidím to hneï - musím reštartnú program.
+  - Po reštarte programu, vidím iba pridané firmy, niè viac.

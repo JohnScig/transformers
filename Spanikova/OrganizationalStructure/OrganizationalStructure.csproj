@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C973696C-AA3B-4197-8971-0857539880BD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>OrganizationalStructure</RootNamespace>
+    <AssemblyName>OrganizationalStructure</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\Enums\EnumDescriptor.cs" />
+    <Compile Include="Data\Repositories\EmployeeRepository.cs" />
+    <Compile Include="Data\Repositories\SectionRepository.cs" />
+    <Compile Include="FrmNewEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewEmployee.Designer.cs">
+      <DependentUpon>FrmNewEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewSection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewSection.Designer.cs">
+      <DependentUpon>FrmNewSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSectionDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSectionDetail.Designer.cs">
+      <DependentUpon>FrmSectionDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStructure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStructure.Designer.cs">
+      <DependentUpon>FrmStructure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Models\Employee.cs" />
+    <Compile Include="Data\Enums\OrganizationalLevel.cs" />
+    <Compile Include="Data\Models\Section.cs" />
+    <Compile Include="FrmUpdateEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpdateEmployee.Designer.cs">
+      <DependentUpon>FrmUpdateEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUpdateSection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpdateSection.Designer.cs">
+      <DependentUpon>FrmUpdateSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmViewEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmViewEmployee.Designer.cs">
+      <DependentUpon>FrmViewEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\OrgLogic.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmNewemployee.resx">
+      <DependentUpon>FrmNewEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewSection.resx">
+      <DependentUpon>FrmNewSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSectionDetail.resx">
+      <DependentUpon>FrmSectionDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStructure.resx">
+      <DependentUpon>FrmStructure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpdateEmployee.resx">
+      <DependentUpon>FrmUpdateEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpdateSection.resx">
+      <DependentUpon>FrmUpdateSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmViewEmployee.resx">
+      <DependentUpon>FrmViewEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
