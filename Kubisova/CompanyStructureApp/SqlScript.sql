@@ -13,7 +13,8 @@ HeadOfNodeId int null,
 
 create table Employee(
 EmployeeId int not null identity(1,1) primary key,
-NodeId int not null foreign key references CompanyStructureNode(NodeId),
+NodeId int null foreign key references CompanyStructureNode(NodeId),
+FirmId int not null,
 Title nvarchar(10) null,
 Name nvarchar(30) not null,
 Surname varchar(30) not null,
