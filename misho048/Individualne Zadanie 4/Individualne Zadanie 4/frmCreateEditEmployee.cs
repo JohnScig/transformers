@@ -94,7 +94,7 @@ namespace Individualne_Zadanie_4
 
         private bool CheckCorrectInput()
         {
-
+            // Zbytočne komplikovaná logika.
             if ((txtBoxName.Text.Length < 3) || (txtBoxName.Text.Any(char.IsDigit)) ||
                 (txtBoxSurname.Text.Length < 3) || (txtBoxSurname.Text.Any(char.IsDigit)) ||
                 (txtBoxEmail.Text.Length < 3))

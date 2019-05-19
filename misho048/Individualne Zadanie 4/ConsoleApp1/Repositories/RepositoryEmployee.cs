@@ -42,6 +42,7 @@ namespace Data.Repositories
             List<ModelEmployee> myListOfEmployees = new List<ModelEmployee>();
             RepositoryManager.ExecuteSqlCommand((command) =>
             {
+                // Načo je tam ten JOIN?
                 command.CommandText = @"select e.* 
                                         from Employee as e
                                         left join Department as d on e.DepartmentId=d.Id 
@@ -76,6 +77,7 @@ namespace Data.Repositories
             bool isSuccessful = false;
             RepositoryManager.ExecuteSqlCommand((command) =>
             {
+                // Načo je tu UPDATE?
                 command.CommandText = @"update [dbo].[Employee]
                                            set DepartmentId=null
                                            where Id = @Id
@@ -223,7 +225,7 @@ namespace Data.Repositories
                 {
                     ret = true;
                 }
-                
+
             });
 
             return ret;

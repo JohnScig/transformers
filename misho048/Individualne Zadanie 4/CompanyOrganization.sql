@@ -1,6 +1,6 @@
-create Database CompanyOrganization
-go
-use CompanyOrganization
+--create Database CompanyOrganization
+--go
+--use CompanyOrganization
 
 create table Department(
 Id int Identity(1,1) not null primary key,

@@ -49,6 +49,8 @@ namespace Individualne_Zadanie_4
 
         private void BtnConfirm_Click(object sender, EventArgs e)
         {
+            // Divné podmienky, kvôli ktorým som nevedel nič založiť.
+            // Sú prehodené textboxy: v txtBoxCode je názov a v txtBoxName je kód.
             if ((lblBossName.Text.Length > 2) && (txtBoxCode.Text.Length > 2) && (txtBoxName.Text.Length > 3))
             {
                 if (_department == null)
@@ -65,6 +67,7 @@ namespace Individualne_Zadanie_4
                 }
                 else
                 {
+                    // Zišla by sa tu transakcia.
                     if (_createEditDepartmentViewModel.UpdateDepartment(txtBoxName.Text, txtBoxCode.Text, _department.ManagerEmployeeId,
                            _department.DepartmentType, _department.SuperiorDepartmentId, _department.Id))
                     {
@@ -91,6 +94,8 @@ namespace Individualne_Zadanie_4
 
             if (_department != null)
             {
+                // Manažéra vymažem ešte pred nastavením nového?
+                // To ako logika nie je dobré. V ďalšom formulári nič nevyberiem, ale zrušil som is manažéra.
                 _createEditDepartmentViewModel.SetDepartmentForEmployee((int)_department.ManagerEmployeeId, null);
                 lblBossName.Text = "";
 

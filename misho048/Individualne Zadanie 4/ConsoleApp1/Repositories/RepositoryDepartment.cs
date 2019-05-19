@@ -69,6 +69,7 @@ namespace Data.Repositories
             List<ModelDepartment> myListOfCompanies = new List<ModelDepartment>();
             RepositoryManager.ExecuteSqlCommand((command) =>
             {
+                // Typ oddelenia v databáze ako string nie je idálne.
                 command.CommandText = @"select * from [dbo].[Department]
                                             where DepartmentType=@DepartmentType";
                 command.Parameters.Add("@DepartmentType", SqlDbType.NVarChar).Value = departmentType.ToString();

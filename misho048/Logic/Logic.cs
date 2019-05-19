@@ -25,6 +25,7 @@ namespace Logic
 
         public List<ModelEmployee> GetUnsignedEmployees()
         {
+            // Dalo by sa to načítať priamo z databázty tak ako je potrebné.
             List<ModelEmployee> myEntryList = new List<ModelEmployee>(RepositoryManager.RepositoryEmployee.GetListOfEmployees());
             List<ModelEmployee> ret = new List<ModelEmployee>();
             foreach (var item in myEntryList)
