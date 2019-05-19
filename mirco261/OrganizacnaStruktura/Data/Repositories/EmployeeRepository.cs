@@ -27,6 +27,7 @@ namespace Data.Repositories
                 {
                     Debug.WriteLine(e.Message);
                 }
+                // Nastala výnimka a aj tak idem ďalej.
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = @"SELECT e.[ID]

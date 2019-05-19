@@ -85,6 +85,7 @@ namespace OrganizacnaStruktura
             int firmaInt = 0;
             foreach (var company in companies)
             {
+                // $ nie je potrebný.
                 treeView.Nodes.Add($"{company.Name}");
                 int diviziaInt = 0;
                 foreach (var division in divisions)

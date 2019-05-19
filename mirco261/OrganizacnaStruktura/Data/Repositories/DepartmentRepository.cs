@@ -108,7 +108,7 @@ namespace Data.Repositories
                         command.Parameters.Add("@Code", SqlDbType.NVarChar).Value = department.Code;
                         command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = department.Name;
                         command.Parameters.Add("@Hierarchy", SqlDbType.Int).Value = (int)department.Hierarchy;
-                        
+
                         if (department.ParentDepartmentID != 0)
                         {
                             command.Parameters.Add("@ParentDepartmentID", SqlDbType.Int).Value = department.ParentDepartmentID;
@@ -226,6 +226,7 @@ namespace Data.Repositories
             }
         }
 
+        // Čo presne vracia táto metóda.
         public List<string> UserExistInDepartment(int idUser)
         {
             List<string> firms = new List<string>();

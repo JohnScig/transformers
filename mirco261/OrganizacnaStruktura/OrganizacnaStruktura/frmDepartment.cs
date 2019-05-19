@@ -18,6 +18,7 @@ namespace OrganizacnaStruktura
         private DepartmentModel _department;
 
 
+        // Prvý parameter nie je potrebný.
         public frmDepartment(EFrmAction eFrmType, DepartmentModel department)
         {
             InitializeComponent();
@@ -64,7 +65,7 @@ namespace OrganizacnaStruktura
                 departmentsList = departmentsList.Where(dep => dep.ParentDepartmentID == departmentNew.ID).ToList();
                 if (departmentsList.Count == 0 || departmentNew.Hierarchy == _department.Hierarchy)
                 {
-                    
+
                     _departmentsLogic.UpdateDepartment(departmentNew);
                     Close();
                 }
@@ -174,7 +175,7 @@ namespace OrganizacnaStruktura
         {
             if (hierarchy == EHierarchy.Firma)
             {
-                cmbParentDeparment.DataSource = "";
+                cmbParentDeparment.DataSource = ""; // null
             }
             else
             {
@@ -183,10 +184,11 @@ namespace OrganizacnaStruktura
                 //in list is only others departments than actual
                 if (_department == null)
                 {
-                    cmbParentDeparment.DataSource = departments.ToList();
+                    cmbParentDeparment.DataSource = departments.ToList(); // Už to je list.
                 }
                 else
                 {
+                    // Toto môže nastať?
                     cmbParentDeparment.DataSource = departments.Where(dep => dep.ID != _department.ID).ToList();
                 }
                 cmbParentDeparment.ValueMember = "Name";

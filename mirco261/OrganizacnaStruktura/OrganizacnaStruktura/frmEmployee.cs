@@ -22,6 +22,7 @@ namespace OrganizacnaStruktura
             InitializeComponent();
 
             DepartmentsLogic departmentsLogic = new DepartmentsLogic();
+            // + DisplayMemner/ValueMember
             cmbDepartment.DataSource = departmentsLogic.GetDepartments();
             cmbDepartment.DisplayMember = "Name";
             cmbDepartment.ValueMember = "ID";
@@ -30,6 +31,7 @@ namespace OrganizacnaStruktura
 
             switch (eFrmAction)
             {
+                // Nepotrebuješ dve tlačítka.
                 case EFrmAction.add:
                     Text = "Pridanie nového zamestnanca";
                     lblNameOfFrm.Text = "Pridanie nového zamestnanca";

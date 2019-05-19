@@ -10,7 +10,7 @@ namespace Data.Models
     public enum EHierarchy
     {
         Firma,
-        Divízia,
+        Divízia, // Dĺžeň? :)
         Projekt,
         Oddelenie
     }
