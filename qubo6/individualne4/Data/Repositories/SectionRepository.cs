@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
+    // + Jednoduché konkrétne metódy.
+    // + Nepoužíva sa SELECT *.
     public class SectionRepository : ConnectionManger
     {
         public bool InsertSection(ModelSection modelSection)

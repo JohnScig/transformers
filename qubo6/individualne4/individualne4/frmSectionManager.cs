@@ -15,7 +15,7 @@ namespace individualne4
     public partial class frmOrganizationStructure : Form
     {
         private SectionManagerViewModel _sectionManagerViewModel = new SectionManagerViewModel();
-        private int _sectionDirectorId;
+        private int _sectionDirectorId; // Toto zrejme by nemalo byť na úrovni triedy.
 
         public frmOrganizationStructure()
         {
@@ -65,10 +65,13 @@ namespace individualne4
             {
                 _sectionDirectorId = employee.DirectorId;
             }
+            // Nastavuje sa vedúci aj ak som nepotvrdil formulár.
             ModelEmployee employeeModel = new ModelEmployee();
             employeeModel = _sectionManagerViewModel.SelectEmployeeById(_sectionDirectorId);
             employeeModel.WorkAtDepartmentId = Convert.ToInt32(dgwDepartment.SelectedRows[0].Cells[0].Value);
             _sectionManagerViewModel.UpdateEmployee(employeeModel);
+
+            // Event handler by sa nemal takto volať. Technicky má nesprávny argument sender.
             dgwDepartment_SelectionChanged(this, new EventArgs());
         }
         #endregion
@@ -81,6 +84,7 @@ namespace individualne4
             {
                 _sectionDirectorId = employee.DirectorId;
             }
+            // Nastavuje sa vedúci aj ak som nepotvrdil formulár.
             ModelSection section = new ModelSection();
             section.DirectorId = _sectionDirectorId;
             section.Id = Convert.ToInt32(dgw.SelectedRows[0].Cells[0].Value);
@@ -131,6 +135,7 @@ namespace individualne4
         }
         private void ClearGrid(DataGridView dgw)
         {
+            // Vyčistí sa grid, ale ostane meno vedúceho.
             dgw.DataSource = null;
             dgw.Rows.Clear();
         }
@@ -182,12 +187,12 @@ namespace individualne4
                 ClearGrid(dgwEmployees);
             }
             DisableAddButton(dgwDepartment, btnAddEmployy);
-            EnableButtons();            
+            EnableButtons();
         }
 
         private void RefreshGrids()
         {
-            _sectionManagerViewModel.GetCompanies();
+            _sectionManagerViewModel.GetCompanies(); // Zabudnutý riadok.
             GridContent(dgwCompany, _sectionManagerViewModel.GetCompanies());
             FillGrid(dgwCompany, dgwDivision, lblCompany);
             FillGrid(dgwDivision, dgwProject, lblDivision);

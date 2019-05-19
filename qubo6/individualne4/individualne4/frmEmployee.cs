@@ -39,6 +39,7 @@ namespace individualne4
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            // Nepýta sa ma, či chcem ozaj mazať.
             _employeeViewModel.DeleteEmployee(Convert.ToInt32(dgwEmployee.SelectedRows[0].Cells[0].Value));
             FillGrid();
         }

@@ -10,6 +10,7 @@ namespace Data.Repositories
 {
     public class ConnectionManger
     {
+        // + Spojenie na DB na jednom mieste.
         public void Execute(Action<SqlCommand> executeAction)
         {
             try

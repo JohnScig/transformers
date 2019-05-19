@@ -34,6 +34,7 @@ namespace individualne4
         }
         private bool MustBeFilled()
         {
+            // Existujú metódy string.IsNullOrEmpty (IsNullOrWhiteSpace).
             if (txtName.Text.Length!=0 && txtCode.Text.Length != 0)
             {
                 return true;
@@ -66,7 +67,7 @@ namespace individualne4
                 }
                 Close();
             }
-            
+
         }
     }
 }

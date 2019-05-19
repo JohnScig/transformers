@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server = TRANSFORMER2\SQLEXPRESS2016; Database=OrganizationStructure;Trusted_Connection=True</Value>
+      <Value Profile="(Default)">Server = STANO-NTB\SQLEXPRESS; Database=qubo6;Trusted_Connection=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
