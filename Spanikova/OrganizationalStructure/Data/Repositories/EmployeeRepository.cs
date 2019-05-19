@@ -12,6 +12,7 @@ namespace OrganizationalStructure.Data.Repositories
 {
     public class EmployeeRepository
     {
+        // Prečo kód a nie ID?
         public List<Employee> GetEmployeesOfDepartment(string departmentCode)
         {
             List<Employee> employees = new List<Employee>();
@@ -85,6 +86,7 @@ namespace OrganizationalStructure.Data.Repositories
             }
         }
 
+        // Metóda je dosť nelogická. Manažéra sekcie by som mal získavať podľa sekcie a nie podľa ID zamestnanca.
         public Employee GetManagerOfSection(int? managerId)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -197,6 +199,7 @@ namespace OrganizationalStructure.Data.Repositories
                 try
                 {
                     connection.Open();
+                    // Transakcia je IDisposable. Ideálne použiť ju v using.
                     SqlTransaction transaction = connection.BeginTransaction();
                     SqlCommand command = new SqlCommand();
                     command.Connection = connection;

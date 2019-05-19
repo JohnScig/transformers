@@ -11,6 +11,7 @@ namespace OrganizationalStructure.Data.Enums
     {
         public static string GetEnumDescription<T>(T value)
         {
+            // Description už je string.
             DescriptionAttribute[] attributes = (DescriptionAttribute[])value.GetType()
                 .GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attributes.Any() ? attributes[0].Description.ToString() : value.ToString();

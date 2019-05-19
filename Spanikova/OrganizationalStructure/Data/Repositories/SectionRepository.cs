@@ -86,6 +86,7 @@ namespace OrganizationalStructure.Data.Repositories
             }
         }
 
+        // + Pekné to s kódmi. Akurát by to malo byť ako samostatný stĺpec. Tzn. kód by mal byť kód.
         public List<Section> GetSectionsByCompany(string companyCode)
         {
             List<Section> sections = new List<Section>();
@@ -94,6 +95,7 @@ namespace OrganizationalStructure.Data.Repositories
                 try
                 {
                     connection.Open();
+                    // Spájanie reťazcov v SQL nie je bezpečné.
                     string sqlQuery = @"SELECT ID, Name, Code, OrganizationalLevel, ManagerID, SuperiorSectionID
                                     FROM Sections WHERE Code LIKE '' + @companyCode + '%'";
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
@@ -246,6 +248,7 @@ namespace OrganizationalStructure.Data.Repositories
             }
         }
 
+        // Vymazanie sekcie by bolo jednoduchšie pomocou ID - to je jednoznačné.
         public bool DeleteSection(string sectionCode, OrganizationalLevel orgLevel)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))

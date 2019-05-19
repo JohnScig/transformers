@@ -11,6 +11,7 @@ namespace OrganizationalStructure.Models
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        // Pri readonly property definovanej pomocou => nie je potrebný getter.
         public string FullName { get => $" ID: {ID}  |  {Title} {LastName} {FirstName}"; }
         public string Title { get; set; }
         public string Phone { get; set; }

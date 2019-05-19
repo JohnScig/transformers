@@ -53,8 +53,11 @@ namespace OrganizationalStructure
         #endregion
 
         #region Fill DataGridViews
+
+        // + Jedna metóda na naplnenie všetkých gridov.
         private void FillDtGrdSection(DataGridView dataGridView, OrganizationalLevel level, int? superiorSectionId)
         {
+            // Stačí použiť jednoduché ==.
             if (level.Equals(OrganizationalLevel.Company))
             {
                 dataGridView.DataSource = _logic.GetSectionsByLevel(level);

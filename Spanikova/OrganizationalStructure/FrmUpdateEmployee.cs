@@ -68,6 +68,7 @@ namespace OrganizationalStructure
             FillCmbDepartments(cmbCompanies.SelectedValue.ToString());
         }
 
+        // Validácie nie sú jednoduché. Nedokázal som normálne vyplniť formulár a nevedel som prečo.
         private void Txt_Validating(object sender, CancelEventArgs e)
         {
             TextBox textBox = (TextBox)sender;

@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace OrganizationalStructure
 {
+    // + Všetko v jednom projekte.
+    // Po spustení programu som chcel pridať zamestnanca a program padol.
+    // Grid (firiem) sa nedá ovládať myšou.
+    // Celkovo sa mi to blbo ovláda.
     static class Program
     {
         /// <summary>
