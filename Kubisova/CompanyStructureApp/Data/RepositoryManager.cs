@@ -7,6 +7,7 @@ using Data.Repositories;
 
 namespace Data
 {
+    // Podľa mňa zbytočné.
     public static class RepositoryManager
     {
         public static EmployeeRepository EmployeeRepository = new EmployeeRepository();

@@ -11,11 +11,12 @@ namespace Data.Repositories
 {
     static class Constants
     {
-        public const string CONNECTION_STRING = @"Server = DESKTOP-GKFDQEI\SQLEXPRESS; Database = CompanyStructureDb;Trusted_Connection = true";
+        public const string CONNECTION_STRING = @"Server=STANO-NTB\SQLEXPRESS;Database=Kubisova;Trusted_Connection=true";
     }
 
     public class EmployeeRepository
     {
+        // Technicky rovnaká metóda ako tá za ňou.
         public List<Employee> GetEmployeesByFirmId(int firmId)
         {
             List<Employee> employees = new List<Employee>();
@@ -206,6 +207,6 @@ namespace Data.Repositories
                     command.ExecuteNonQuery();
                 }
             }
-        }   
+        }
     }
 }

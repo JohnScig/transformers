@@ -12,6 +12,7 @@ namespace CompanyStructureCore
     {
         public CompanyStructureNode CreateFirm(string codeOfNode, string nameOfNode, TypeOfNode typeOfNode)
         {
+            // Na vytvorenie je možné použiť jednú metódu, ktorá robí všetko a len jej poslať správne parametre.
             CompanyStructureNode firm = new CompanyStructureNode();
             firm.CodeOfNode = codeOfNode;
             firm.NameOfNode = nameOfNode;

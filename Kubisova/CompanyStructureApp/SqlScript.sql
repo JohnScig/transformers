@@ -1,7 +1,8 @@
-﻿create database CompanyStructureDb
-go
-use CompanyStructureDb
+﻿--create database CompanyStructureDb
+--go
+--use CompanyStructureDb
 
+-- Netreba postfixy "OfNode"
 create table CompanyStructureNode(
 NodeId int not null primary key identity(1,1),
 CodeOfNode nvarchar(10) not null,
