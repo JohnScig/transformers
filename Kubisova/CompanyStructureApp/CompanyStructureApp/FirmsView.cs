@@ -26,6 +26,7 @@ namespace CompanyStructureApp
             _firmsViewModel.GetFirms();
             dGVFirms.DataSource = _firmsViewModel.Firms;
             dGVFirms.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            // Indexovanie pomocou čísel je nebezpečné.
             dGVFirms.Columns[0].Visible = false;
             dGVFirms.Columns[3].Visible = false;
             dGVFirms.Columns[4].Visible = false;
@@ -58,6 +59,7 @@ namespace CompanyStructureApp
             }
         }
 
+        // Nefunguje oprava.
         private void btnEditFirm_Click(object sender, EventArgs e)
         {
             int index = dGVFirms.CurrentRow.Index;
