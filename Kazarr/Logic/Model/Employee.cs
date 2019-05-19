@@ -20,6 +20,8 @@ namespace Logic.Model
         {
             return $"{Name} {SurName}";
         }
+
+        // ??
         public override bool Equals(object obj)
         {
             return base.Equals(obj);

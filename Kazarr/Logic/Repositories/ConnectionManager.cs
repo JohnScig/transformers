@@ -36,12 +36,13 @@ namespace Logic.Repositories
                     catch (SqlException e)
                     {
                         Debug.WriteLine($"Error happend during  Execution \n Error info:{e.Message}\n{e.StackTrace}");
-                        //logger 
+                        //logger
                     }
                 }
             }
             catch (Exception e)
             {
+                // Environment.NewLine.
                 Debug.WriteLine($"Error happend during  Connecting \n Error info:{e.Message}\n{e.StackTrace}");
             }
         }

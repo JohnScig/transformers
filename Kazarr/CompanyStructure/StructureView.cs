@@ -19,6 +19,7 @@ namespace CompanyStructure
         public StructureView(LogicSystem logic, int departmentId)
         {
             InitializeComponent();
+            // Načo dve tlačítka?
             btnOk.Visible = true;
             btnAdd.Visible = false;
             _logicSystem = logic;
@@ -35,7 +36,7 @@ namespace CompanyStructure
         public StructureView(LogicSystem logic)
         {
             InitializeComponent();
-            
+
             _logicSystem = logic;
             btnOk.Visible = false;
             btnAdd.Visible = true;
@@ -46,6 +47,7 @@ namespace CompanyStructure
             cmbParentDepartment.DataSource = _structureViewModel.GetCompanyDivisionProject(cmbDepartmentType.SelectedIndex);
         }
 
+        // Duplikácia kódu s btnAdd.
         private void btnOk_Click(object sender, EventArgs e)
         {
             _structureViewModel.Department.Name = txtDepartmentName.Text;
@@ -72,9 +74,11 @@ namespace CompanyStructure
 
         private void cmbDepartmentType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // cmbDepartmentType.SelectedIndex nie je to isté ako ID typu.
             cmbParentDepartment.DataSource = _structureViewModel.GetCompanyDivisionProject(cmbDepartmentType.SelectedIndex);
         }
 
+        // Toto nezafunguje vôbec.
         private void cmbCheifEmployee_Validating(object sender, CancelEventArgs e)
         {
             if(cmbCheifEmployee.SelectedItem == null)

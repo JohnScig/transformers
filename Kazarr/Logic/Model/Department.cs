@@ -8,6 +8,7 @@ namespace Logic.Model
 {
     public class Department
     {
+        // Id by nemalo byť nullable, keďže je to primárny kľúč.
         public int? Id { get; set; }
         public string Name { get; set; }
         public int? DepartmentType { get; set; }
@@ -16,6 +17,7 @@ namespace Logic.Model
 
         public override string ToString()
         {
+            // Načo je to v $ stringu?
             return $"{Name}";
         }
     }

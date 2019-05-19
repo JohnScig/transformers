@@ -13,7 +13,7 @@ namespace Logic
 {
     public class LogicSystem
     {
-        private string DB_NAME = "CompanyStructure1";
+        private string DB_NAME = "Kazarr";
         private const string INITIAL_CATALOG = "master";
         public string GenerateDb()
         {

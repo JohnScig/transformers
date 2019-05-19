@@ -29,6 +29,7 @@ namespace CompanyStructure
             using (EmployeeView employee = new EmployeeView(_structureOverLayViewModel.LogicSystem))
             {
                 employee.ShowDialog();
+                // ??
                 if(employee.DialogResult == DialogResult.OK)
                 {
 
@@ -68,7 +69,7 @@ namespace CompanyStructure
                 TreeNode node = new TreeNode(item.Name);
                 parent.Nodes.Add(node);
                 Refresh(node, _structureOverLayViewModel.GetDepartmentByParent(item.Id));
-            }           
+            }
         }
 
         //public void KardyRefreshTree(TreeNode node)
@@ -185,7 +186,7 @@ namespace CompanyStructure
             grdDepartmentEmployees.Rows.Clear();
             grdDivisions.DataSource = _structureOverLayViewModel.GetSelectedCompanyDepartment((int)grdCompanies.Rows[e.RowIndex].Cells[0].Value);
             _structureOverLayViewModel.DepartmentId = (int)grdCompanies.Rows[e.RowIndex].Cells[0].Value;
-            
+
         }
 
         private void grdDivisions_RowEnter(object sender, DataGridViewCellEventArgs e)

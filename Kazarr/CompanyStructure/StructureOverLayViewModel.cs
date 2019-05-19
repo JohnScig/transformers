@@ -21,6 +21,8 @@ namespace CompanyStructure
                 ChildDepartments = this.GetDepartmentByParent(_departmentId);
             } }
         public List<Department> ChildDepartments { get; set; }
+
+        // Toto sa zjavne nikde nepoužíva.
         public Stack<Department> ToTreeDepartments { get; set; }
 
         public StructureOverLayViewModel(LogicSystem logic)

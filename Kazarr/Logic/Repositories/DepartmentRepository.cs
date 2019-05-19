@@ -14,11 +14,12 @@ namespace Logic.Repositories
         public bool InsertDepartment(Department department)
         {
             bool ret = false;
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"insert into department (Name, DepartmentTypeId, ParentDepartmentId, CheifEmployeeId)
                                         values (@name, @departmentTypeId, @parentDepartmentId, @cheifEmployeeId)";
                 command.Parameters.Add("@name", SqlDbType.NVarChar).Value = (object)department.Name ?? DBNull.Value;
+                // Parametre sú definované ako string, ale v skutočnosti sú int.
                 command.Parameters.Add("@departmentTypeId", SqlDbType.NVarChar).Value = (object)department.DepartmentType ?? DBNull.Value;
                 command.Parameters.Add("@parentDepartmentId", SqlDbType.NVarChar).Value = (object)department.ParentDeparment ?? DBNull.Value;
                 command.Parameters.Add("@cheifEmployeeId", SqlDbType.NVarChar).Value = (object)department.CheifEmployeeId ?? DBNull.Value;
@@ -30,10 +31,12 @@ namespace Logic.Repositories
             return ret;
         }
 
+        // Parameter id by nemal byť nullable. Keď chcem šéfa, vždy viem pre koho ho chcem.
+        // Ak nenájdem šéfa, asi by som mal vrátiť null a nie prázdnu inštanciu Employee.
         public Employee GetCheifEmployee(int? id)
         {
             Employee ret = new Employee();
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"select * from Employee as e join Department as d 
                                         on e.Id = d.CheifEmployeeId
@@ -60,7 +63,7 @@ namespace Logic.Repositories
         public List<Department> GetDepartmentByParent(int? departmentId)
         {
             List<Department> ret = new List<Department>();
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"select * from Department where ParentDepartmentId = @departmentId";
                 command.Parameters.Add("@departmentId", SqlDbType.Int).Value = departmentId;
@@ -85,7 +88,7 @@ namespace Logic.Repositories
         public DepartmentType GetDeparmentType(int? id)
         {
             DepartmentType ret = new DepartmentType();
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"select dt.Id, dt.Name from DepartmentType as dt
                                           join Department as d on dt.Id = d.DepartmentTypeId
@@ -106,7 +109,7 @@ namespace Logic.Repositories
         public IList<Department> GetDeparmentByType(int? departmentType)
         {
             List<Department> ret = new List<Department>();
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"select * from department where DepartmentTypeId = @departmentType";
                 command.Parameters.Add("@departmentType", SqlDbType.Int).Value = departmentType;
@@ -152,7 +155,7 @@ namespace Logic.Repositories
         public Department GetDepartmentById(int departmentId)
         {
             Department ret = new Department();
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"select * from Department where id = @id";
                 command.Parameters.Add("@id", SqlDbType.Int).Value = departmentId;

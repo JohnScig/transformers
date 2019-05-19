@@ -15,7 +15,7 @@ namespace Logic.Repositories
         public bool GenerateDB()
         {
             bool ret = false;
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"CREATE DATABASE [CompanyStructure1]";
                 if(command.ExecuteNonQuery() != 0)
@@ -26,6 +26,7 @@ namespace Logic.Repositories
             return ret;
         }
 
+        // Na čo je dobrá táto funkcia?
         public string GetDataBaseName()
         {
             string ret = "";
@@ -40,7 +41,7 @@ namespace Logic.Repositories
         public bool GenerateTables()
         {
             bool ret = false;
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"CREATE TABLE [dbo].[Department](
 	                                [Id] [int] IDENTITY(1,1) NOT NULL,
