@@ -1,0 +1,11 @@
+﻿- K databáze nastavovať connection string a nechať človeka nech si určí názov databázy sám.
+- Reťazce cez viac riadkov.
+- Environment.NewLine
+- StringBuilder
+- DataGridView sa dá nastaviť v dizajnéri.
+- Parametre pre DbCommand v správnom poradí.
+- Získavanie dát z DbReadera pomocou indexov vs. SELECT *
+- Výnimky sú zahadzované. Lepšie by bolo zobraziť ju.
+- Ak nastane výnimka pri otvorení spojenia, je zahodená a pokračuje sa ďalej.
+- Chýbajú kontroly (ak chcem niečo vymazať).
+- Primárne kľúče ako nullable (nullable by malo byť len to, čo má povolené NULL v databáze).
