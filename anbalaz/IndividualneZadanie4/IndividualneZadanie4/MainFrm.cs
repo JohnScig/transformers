@@ -19,6 +19,7 @@ namespace IndividualneZadanie4
         {
             using (ManageStructuresForm newFrm = new ManageStructuresForm())
             {
+                // Načo je tu if?
                 if (newFrm.ShowDialog() == DialogResult.OK)
                 {
                 }
@@ -70,6 +71,7 @@ namespace IndividualneZadanie4
 
         private void InitializeDataGrids()
         {
+            // Stĺpce sa dajú pridať v dizajne.
             dtGrdVwFirm.Columns.Add("Code", "Code");
             dtGrdVwFirm.Columns.Add("Name", "Name");
             dtGrdVwDivision.Columns.Add("Code", "Code");
@@ -136,6 +138,7 @@ namespace IndividualneZadanie4
 
         private void dtGrdVwFirm_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Duplikácia kódu v ďalších dvoch metódach.
             int code = (int)dtGrdVwFirm.CurrentRow.Cells["Code"].Value;
             RefreshDatagridDivision(_mainFrmService.GetStructuresList(code, OrganizationLevel.Division));
         }

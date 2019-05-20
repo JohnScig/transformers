@@ -13,6 +13,7 @@ namespace Service
 
         #region Employee repository
 
+        // Názov metódy je mätúci. Podľa názvu by som nečakal, že ho reálne vloží, ale iba skontroluje či existuje v DB.
         public bool IsEmployeeInserted(Employee employee)
         {
             return _employeeRepository.InsertEmployee(employee);
@@ -81,6 +82,7 @@ namespace Service
 
         public List<Employee> GetEveryEmployeeWhoIsNotDirector(int code)
         {
+            // Vyberám si všetkých zamestnancov a všetky štruktúry firmy?
             List<Structure> structures = GetStructuresList();
             List<Employee> employees = GetEmployeesList();
 
@@ -100,7 +102,9 @@ namespace Service
 
         public int GenerateCode()
         {
+            // Premenná nie je potrebná.
             int dafaultCode = 1000;
+            // 2 x volanie GetStructureList().
             if (GetStructuresList().Any())
             {
                 return GetStructuresList().Max(structure => structure.Code) + 1;
@@ -117,6 +121,7 @@ namespace Service
 
             if (employee.FirmStructure != null)
             {
+                // Ak táto situácia môže nastať, stačí vybrať konkrétny záznam a nie celú štruktúru firmy.
                 List<Structure> structures = _structureRepository.SelectStructureList();
                 foreach (var structure in structures)
                 {

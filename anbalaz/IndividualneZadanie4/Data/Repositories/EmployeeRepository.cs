@@ -116,6 +116,7 @@ namespace Data.Repositories
                 }
                 using (SqlCommand command = connection.CreateCommand())
                 {
+                    // Komplikovaný SELECT na získanie konkrétneho zamestnanca.
                     command.CommandText = @"SELECT s.EmployeeID,LastName,FirstName,Title,PhoneNumber,EmailAddress,e.StructureID FROM Employee AS e
                                             LEFT JOIN Structure AS s ON s.EmployeeID=e.ID
                                             WHERE s.EmployeeID=@code;";
@@ -156,6 +157,7 @@ namespace Data.Repositories
                 connection.Open();
                 using (SqlCommand command = connection.CreateCommand())
                 {
+                    // Prečo je try až tu a nie úplne hore?
                     try
                     {
                         command.CommandText = @"INSERT INTO Employee(FirstName,LastName,Title,PhoneNumber,EmailAddress,StructureID) 
@@ -171,6 +173,7 @@ namespace Data.Repositories
                     }
                     catch (SqlException ex)
                     {
+                        // Environment.NewLine
                         Console.WriteLine($"Exception occured: \n {ex}");
                         return false;
                     }

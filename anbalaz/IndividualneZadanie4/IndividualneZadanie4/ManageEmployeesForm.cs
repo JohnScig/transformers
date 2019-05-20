@@ -19,6 +19,7 @@ namespace IndividualneZadanie4
             RefreshEmployeesCmbBx();
         }
 
+        // Načo je tu parameter, ktorý sa nepoužíva?
         public ManageEmployeesForm(int number)
         {
             InitializeComponent();

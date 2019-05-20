@@ -9,6 +9,12 @@ namespace Data.Repositories
 {
     public class StructureRepository
     {
+        // Connection string by bolo vhodné dať cez konštruktor, nech si ho stále neťahá.
+        // Všetky chyby (výnimky) sú zahadzované.
+        // Duplikácia kódu na rôznych úrovniach:
+        //   - Kontrola otvorenia spojenia.
+        //   - Naplnenie dát.
+        //   - Dve metódy SelectStructureList().
 
         public List<Structure> SelectStructureList(int code, OrganizationLevel level)
         {
@@ -23,9 +29,11 @@ namespace Data.Repositories
                 {
                     Debug.WriteLine(e.Message);
                 }
+                // Prečo pokračujem keď mi spadlo otvorenie spojenia?
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     string sqlQuery = $"SELECT * FROM Structure WHERE OrganizationLevel=@level";
+                    // Parametre je vhodné dávať v rovnakom poradí ako sú v SQL.
                     if (code != 0)
                     {
                         sqlQuery += " AND StructureID=@code";
@@ -41,6 +49,7 @@ namespace Data.Repositories
                                 while (reader.Read())
                                 {
                                     Structure structure = new Structure();
+                                    // Prístup pomocou indexov nie je bezpečný, zvlášť v kombinácii so "SELECT *".
                                     structure.ID = reader.GetInt32(0);
                                     structure.Name = reader.GetString(1);
                                     structure.Code = reader.GetInt32(2);
@@ -130,6 +139,7 @@ namespace Data.Repositories
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             {
+                                // Prečo while?
                                 while (reader.Read())
                                 {
                                     structure.ID = reader.GetInt32(0);
@@ -162,6 +172,7 @@ namespace Data.Repositories
                 try
                 {
                     connection.Open();
+                    // transaction aj command sú IDisposable.
                     SqlTransaction transaction = connection.BeginTransaction();
                     SqlCommand command = new SqlCommand();
                     command.Connection = connection;
@@ -204,6 +215,8 @@ namespace Data.Repositories
         public bool InsertStructure(Structure structure)
         {
             string sqlQueryUpdateDirector = @"UPDATE Employee SET StructureID = @structureID WHERE ID = @employeeID";
+
+            // Spojiť z dvoch (a viac reťazcov).
             string sqlQueryInsertStructure = @"INSERT INTO Structure(Name, Code, OrganizationLevel, EmployeeID, StructureID) 
                                                VALUES(@name, @code, @organizationLevel, @employeeId, @firmStructureID)";
 
